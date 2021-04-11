@@ -33,7 +33,7 @@ jobs:
           mkdir output
           ./create-output.sh > output/log-$(date "+%Y-%m-%d") 2>&1
       - uses: actions/upload-artifact@v2
-          with:
-            name: ${{ env.OUTPUT }}
-            path: output/
-            retention-days: 3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: output/
+          retention-days: 3
