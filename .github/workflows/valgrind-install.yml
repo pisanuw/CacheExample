@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Download Valgrind
       run: |
-        sudo apt-get install docker docker-ce docker-ce-cli containerd.io
+        sudo apt-get install docker moby-cli
         docker build -t pisanuw/valgrind .
         docker push pisanuw/valgrind
         # sudo apt-get install valgrind
