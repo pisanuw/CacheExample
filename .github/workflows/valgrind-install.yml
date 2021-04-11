@@ -33,5 +33,5 @@ jobs:
           echo "OUTPUT=output-$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
           ./create-output.sh
 
-          # with:
+          ## with:
           #   name: ${{ env.OUTPUT }}
