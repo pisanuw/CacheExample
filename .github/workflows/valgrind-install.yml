@@ -27,5 +27,5 @@ jobs:
           find /home/ -iname hello.txt 2> /dev/null || true
           whereis valgrind || true
       # run the compilation
-      -name: Step -> create-output.sh
+      - name: Step -> create-output.sh
         run: ./create-output.sh
