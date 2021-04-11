@@ -28,7 +28,7 @@ jobs:
           whereis valgrind || true
       # run the compilation
       - name: Step -> create-output.sh
-        - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2
         run: |
           echo "OUTPUT=output-$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
           ./create-output.sh
