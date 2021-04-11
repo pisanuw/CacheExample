@@ -26,10 +26,10 @@ GITHUB_MACHINE='Linux fv-az'
 
 if [[ $MACHINE == *"${GITHUB_MACHINE}"* ]]; then
   echo "====================================================="
-  echo "Running as a GitHub action, attempting to install programs"
+  echo "Running as a GitHub action, using cached data"
   echo "====================================================="
-  sudo apt-get update
-  sudo apt-get install llvm clang-tidy valgrind
+  # sudo apt-get update
+  # sudo apt-get install llvm clang-tidy valgrind
 fi
 
 # If we are running on CSSLAB and 
