@@ -14,7 +14,6 @@ jobs:
           path: ${{ runner.temp }}/cache-directory-example
           key: ${{ runner.os }}-cache-hello-world-key-v1.0
       # Required action
-      - name: Step -> Cache-Anything
       - uses: airvzxf/cache-anything-new-action@v1.0.1
         with:
           script: 'install.sh'
@@ -27,3 +26,14 @@ jobs:
         run: |
           find /home/ -iname hello.txt 2> /dev/null || true
           whereis valgrind || true
+      # run the compilation
+      - name: Step -> create-output.sh
+        run: |
+          echo "OUTPUT=output-$(date "+%Y-%m-%d")" >> $GITHUB_ENV
+          mkdir output
+          ./create-output.sh > output/log-$(date "+%Y-%m-%d") 2>&1
+        - uses: actions/upload-artifact@v2
+          with:
+            name: ${{ env.OUTPUT }}
+            path: output/
+            retention-days: 3
