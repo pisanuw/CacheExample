@@ -10,7 +10,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Download Valgrind
-      run: apt-get --download-only valgrind
-      run: ls -lR
+      - run: apt-get --download-only valgrind
+      - run: ls -lR
 
 
