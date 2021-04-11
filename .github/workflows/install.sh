@@ -4,7 +4,7 @@ echo "# ----------------------------------------------------------"
 echo "# Install script"
 echo "# ----------------------------------------------------------"
 sudo apt update
-sudo apt install -y valgrind
+sudo apt-get install llvm clang-tidy valgrind
 echo "# *** END: Install script"
 echo "# ----------------------------------------------------------"
 echo "# Create the hello.txt file"
