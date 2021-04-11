@@ -1,4 +1,4 @@
-name: CI - Cache Valgrind
+name: Cache and Run create-output.sh
 on:
   workflow_dispatch:
 jobs:
@@ -29,7 +29,7 @@ jobs:
       # run the compilation
       - name: Step -> create-output.sh
         run: |
-          echo "OUTPUT=output-$(date "+%Y-%m-%d-%H_%M_%S").zip" >> $GITHUB_ENV
+          echo "OUTPUT=output-$(date "+%Y-%m-%d-%H_%M_%S")" >> $GITHUB_ENV
           mkdir output
           ./create-output.sh > output/log-$(date "+%Y-%m-%d-%H_%M_%S").txt 2>&1
       - uses: actions/upload-artifact@v2
