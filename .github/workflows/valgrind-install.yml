@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   testing_actions:
-    name: Testing Actions | Job
+    name: Cache Valgrind | Job
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,3 +26,6 @@ jobs:
         run: |
           find /home/ -iname hello.txt 2> /dev/null || true
           whereis valgrind || true
+      # run the compilation
+      -name: Step -> create-output.sh
+      run: ./create-output.sh
