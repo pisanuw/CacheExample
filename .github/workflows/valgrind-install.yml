@@ -28,4 +28,5 @@ jobs:
           whereis valgrind || true
       # run the compilation
       - name: Step -> create-output.sh
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
         run: ./create-output.sh
