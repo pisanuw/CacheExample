@@ -4,5 +4,6 @@
 
 ls -lR
 
+which valgrind
 
 
