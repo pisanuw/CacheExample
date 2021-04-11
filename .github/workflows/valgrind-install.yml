@@ -27,9 +27,3 @@ jobs:
         run: |
           find /home/ -iname hello.txt 2> /dev/null || true
           whereis valgrind || true
-      # run the compilation
-      - name: Step -> create-output.sh
-        run: |
-          echo "OUTPUT=output-$(date "+%Y-%m-%d")" >> $GITHUB_ENV
-          mkdir output
-          ./create-output.sh > output/log-$(date "+%Y-%m-%d") 2>&1
