@@ -31,7 +31,7 @@ jobs:
         run: |
           echo "OUTPUT=output-$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
           mkdir output
-          ./create-output.sh > log.txt 2>&1
+          ./create-output.sh > "output/log-${OUTPUT}.txt" 2>&1
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
