@@ -14,6 +14,7 @@ jobs:
           path: ${{ runner.temp }}/cache-directory-example
           key: ${{ runner.os }}-cache-hello-world-key-v1.0
       # Required action
+      - name: Step -> Cache-Anything
       - uses: airvzxf/cache-anything-new-action@v1.0.1
         with:
           script: 'install.sh'
@@ -29,9 +30,9 @@ jobs:
       # run the compilation
       - name: Step -> create-output.sh
         run: |
-          echo "OUTPUT=output-$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
+         echo "OUTPUT=output-$(date "+%Y-%m-%d")" >> $GITHUB_ENV
           mkdir output
-          ./create-output.sh > "output/log-${OUTPUT}.txt" 2>&1
+          ./create-output.sh > "output/log-$(date "+%Y-%m-%d")" 2>&1
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
