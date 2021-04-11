@@ -34,3 +34,5 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: ${{ env.OUTPUT }}
+          path: .
+          retention-days: 3
