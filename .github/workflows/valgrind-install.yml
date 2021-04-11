@@ -25,4 +25,4 @@ jobs:
       - name: Step -> Use the cache
         run: |
           find /home/ -iname hello.txt 2> /dev/null || true
-          whereis pandoc || true
+          whereis valgrind || true
