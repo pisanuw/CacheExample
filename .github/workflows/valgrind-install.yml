@@ -29,5 +29,8 @@ jobs:
       # run the compilation
       - name: Step -> create-output.sh
         run: |
-          echo "::set-output name=date::$(date +'%Y-%m-%d')"
+          echo "OUTPUT=output-$(date "+%Y.%m.%d-%H.%M.%S")" >> $GITHUB_ENV
           ./create-output.sh
+        - uses: actions/upload-artifact@v2
+          with:
+            name: ${{ env.OUTPUT }}
