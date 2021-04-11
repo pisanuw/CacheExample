@@ -1,28 +1,28 @@
-name: Caching Valgrind
-
-on: push
-
+name: CI - Cache Valgrind
+on:
+  workflow_dispatch:
 jobs:
-  build:
+  testing_actions:
+    name: Testing Actions | Job
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Download Valgrind
-      run: |
-        sudo apt-get remove docker docker-engine docker.io containerd runc
-        sudo apt-get update
-        sudo apt-get install apt-transport-https ca-certificates curl gnupg lsb-release
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-        echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-        sudo apt-get update
-        sudo apt-get install docker-ce docker-ce-cli containerd.io
-        sudo docker run hello-world
-        sudo docker build -t pisanuw/valgrind .
-        sudo docker push pisanuw/valgrind
-        # sudo apt-get install valgrind
-        # which valgrind
-        # ls -lR /opt
-        # ls -lR /usr/bin
-
-
+      - uses: actions/checkout@v2
+      # Required action
+      - uses: actions/cache@v2
+        id: cache-id
+        with:
+          path: ${{ runner.temp }}/cache-directory-example
+          key: ${{ runner.os }}-cache-hello-world-key-v1.0
+      # Required action
+      - uses: airvzxf/cache-anything-new-action@v1.0.1
+        with:
+          script: 'install.sh'
+          is_cached: ${{ steps.cache-id.outputs.cache-hit }}
+          cache: ${{ runner.temp }}/cache-directory-example
+          snapshot: '/'
+          exclude: '/boot /data /dev /mnt /proc /run /sys'
+      # Not required action
+      - name: Step -> Use the cache
+        run: |
+          find /home/ -iname hello.txt 2> /dev/null || true
+          whereis pandoc || true
