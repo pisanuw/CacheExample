@@ -28,4 +28,4 @@ jobs:
           whereis valgrind || true
       # run the compilation
       -name: Step -> create-output.sh
-      run: ./create-output.sh
+        run: ./create-output.sh
